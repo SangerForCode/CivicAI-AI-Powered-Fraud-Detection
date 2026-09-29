@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { cx } from "@/components/ui";
 
 const CONTROL_CLASSES =
-  "w-full rounded-md border bg-surface px-3 py-2 text-[13px] text-ink placeholder:text-ink-subtle " +
+  "w-full rounded-[var(--radius-field)] border bg-surface px-3 py-2 text-[13px] text-ink placeholder:text-ink-subtle " +
   "focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600";
 
 export function FormField({

@@ -211,7 +211,7 @@ export function ProjectForm({
                 />
                 <div
                   role="menu"
-                  className="absolute right-0 z-20 mt-1.5 w-80 overflow-hidden rounded-[10px] border border-line bg-surface shadow-[0_4px_12px_rgba(15,23,42,0.08)]"
+                  className="absolute right-0 z-20 mt-1.5 w-80 overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-raised)]"
                 >
                   {EXAMPLE_PROJECTS.map((example) => (
                     <button
@@ -222,7 +222,7 @@ export function ProjectForm({
                         onFormChange(exampleToForm(example));
                         setExampleMenuOpen(false);
                       }}
-                      className="block w-full border-b border-line px-4 py-2.5 text-left last:border-b-0 hover:bg-canvas"
+                      className="block w-full border-b border-line px-4 py-2.5 text-left last:border-b-0 hover:bg-surface-sunken"
                     >
                       <span className="block text-[13px] font-medium text-ink">{example.name}</span>
                       <span className="mt-0.5 block text-[12px] leading-snug text-ink-muted">
@@ -435,7 +435,7 @@ export function ProjectForm({
           </Fieldset>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line bg-canvas/60 px-5 py-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line bg-surface-sunken/60 px-5 py-4">
           <p className="text-[12px] text-ink-subtle">
             Blank fields are submitted as unknown, not as zero.
           </p>

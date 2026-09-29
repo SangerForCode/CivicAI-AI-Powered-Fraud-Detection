@@ -72,7 +72,7 @@ export function DataQuality({ assessment }: { assessment: RiskAssessment }) {
             >
               <ul className="space-y-2.5">
                 {data_quality_warnings.map((warning) => (
-                  <li key={warning.code} className="rounded-md border border-line bg-canvas px-3 py-2">
+                  <li key={warning.code} className="rounded-xl border border-line bg-surface-sunken px-3 py-2">
                     <div className="flex flex-wrap items-center gap-2">
                       <code className="font-mono text-[11.5px] font-medium text-ink-muted">
                         {warning.code}

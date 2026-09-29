@@ -109,6 +109,20 @@ export interface RiskAssessment {
   disclaimer: string;
 }
 
+/** An entry in `GET /risk/rules` — what the engine checks, and with what inputs. */
+export interface RuleDescription {
+  rule_id: string;
+  dimension: DimensionKey;
+  severity: Severity;
+  description: string;
+  required_fields: string[];
+}
+
+export interface RuleCatalogueResponse {
+  rules: RuleDescription[];
+  disclaimer: string;
+}
+
 export interface HealthResponse {
   status: string;
   service: string;

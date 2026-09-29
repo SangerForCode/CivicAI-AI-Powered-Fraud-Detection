@@ -1,23 +1,28 @@
 @import "tailwindcss";
 
 /* MPLADS Sentinel — light institutional theme.
-   One brand colour, one accent, neutral greys. No gradients, no dark mode:
-   this is a review console meant to read the same on every screen. */
+   Deep-green government chrome, soft canvas, generous curvature. One brand
+   colour, one accent, neutral greys. No dark mode: this is a review console
+   meant to read the same on every screen. */
 
 @theme {
-  --color-brand-50: #eef3f9;
-  --color-brand-100: #d8e3f0;
-  --color-brand-600: #2c5183;
-  --color-brand-700: #1e3a5f;
-  --color-brand-900: #142744;
+  --color-brand-50: #eaf4ef;
+  --color-brand-100: #cfe6db;
+  --color-brand-400: #3f7f66;
+  --color-brand-600: #1c5f47;
+  --color-brand-700: #124534;
+  --color-brand-800: #0d3527;
+  --color-brand-900: #08261c;
 
-  --color-accent-50: #fbf4ea;
+  --color-accent-50: #fdf4e7;
+  --color-accent-100: #f8e3c2;
   --color-accent-600: #c6873b;
   --color-accent-700: #9c6a2c;
 
-  --color-canvas: #f8fafc;
+  --color-canvas: #eef2f7;
   --color-surface: #ffffff;
-  --color-line: #e2e8f0;
+  --color-surface-sunken: #f6f8fb;
+  --color-line: #e5eaf1;
   --color-line-strong: #cbd5e1;
   --color-ink: #0f172a;
   --color-ink-muted: #64748b;
@@ -38,11 +43,16 @@
   --color-risk-critical-line: #fecaca;
   --color-risk-unknown: #475569;
   --color-risk-unknown-bg: #f8fafc;
-  --color-risk-unknown-line: #e2e8f0;
+  --color-risk-unknown-line: #e9eef5;
 
-  --radius-card: 10px;
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06);
+  /* Curvature scale. The console is soft-edged throughout. */
+  --radius-card: 20px;
+  --radius-panel: 28px;
+  --radius-field: 12px;
+
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -16px rgba(15, 23, 42, 0.18);
   --shadow-raised: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-panel: 0 24px 60px -32px rgba(8, 38, 28, 0.35);
 }
 
 html {
@@ -60,6 +70,19 @@ body {
 /* Numbers that sit in columns should not jitter as they change. */
 .tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* Scoped scrollbar styling for the sidebar and long result columns. */
+.thin-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 999px;
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {

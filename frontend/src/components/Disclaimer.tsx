@@ -9,7 +9,7 @@
 
 export function Disclaimer({ text }: { text: string }) {
   return (
-    <p className="rounded-md border border-line bg-canvas px-4 py-3 text-[12px] leading-relaxed text-ink-muted">
+    <p className="rounded-2xl border border-line bg-surface-sunken px-4 py-3 text-[12px] leading-relaxed text-ink-muted">
       <span className="font-medium text-ink-muted">Note. </span>
       {text}
     </p>

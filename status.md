@@ -11,6 +11,7 @@ Last updated: 2026-09-29
 | Backend tests | Complete — 49 passing |
 | Frontend scaffold | Complete |
 | Frontend components | Complete |
+| Frontend visual redesign | Complete — curved shell, green chrome, State Emblem mark |
 | End-to-end verification | Complete — all five examples scored by the live engine |
 
 ## Key finding
@@ -39,6 +40,8 @@ engine became part of this work. See `plan.md` §0.
 - [x] Frontend: empty / loading / error states, reset and new-assessment actions
 - [x] Run both services, verify all five examples end to end
 - [x] README with run instructions
+- [x] Redesign: sidebar shell, State Emblem mark, curved surfaces
+- [x] Rule Catalogue view backed by `GET /risk/rules`
 
 ## Verification
 

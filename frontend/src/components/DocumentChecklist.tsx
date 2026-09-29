@@ -105,7 +105,7 @@ export function DocumentChecklist({
               {extras.map((name) => (
                 <span
                   key={name}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-canvas px-2.5 py-0.5 text-[12px] text-ink"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface-sunken px-2.5 py-0.5 text-[12px] text-ink"
                 >
                   {name}
                   <button
@@ -132,7 +132,7 @@ export function DocumentChecklist({
                 }
               }}
               placeholder="Add another document name"
-              className="flex-1 rounded-md border border-line-strong bg-surface px-3 py-2 text-[13px] text-ink placeholder:text-ink-subtle focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/25"
+              className="flex-1 rounded-[var(--radius-field)] border border-line-strong bg-surface px-3 py-2 text-[13px] text-ink placeholder:text-ink-subtle focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/25"
             />
             <Button type="button" variant="secondary" onClick={addCustom}>
               Add
@@ -159,10 +159,10 @@ function ModeButton({
       onClick={onClick}
       aria-pressed={active}
       className={cx(
-        "rounded-md border px-2.5 py-1 text-[12px] font-medium transition-colors",
+        "rounded-full border px-3 py-1 text-[12px] font-medium transition-colors",
         active
           ? "border-brand-700 bg-brand-50 text-brand-700"
-          : "border-line-strong bg-surface text-ink-muted hover:bg-canvas",
+          : "border-line-strong bg-surface text-ink-muted hover:bg-surface-sunken",
       )}
     >
       {children}

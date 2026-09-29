@@ -1,0 +1,26 @@
+# Render Infrastructure-as-Code
+# https://docs.render.com/infrastructure-as-code
+#
+# Connect this repo on render.com and Render picks this file up automatically.
+
+services:
+  - type: web
+    name: mplads-sentinel-backend
+    runtime: python
+    region: singapore
+    plan: free
+
+    # Build
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+    # Render sets PORT; the start command above uses it.
+    rootDir: backend
+
+    healthCheckPath: /health
+
+    envVars:
+      # Add the Netlify frontend URL here after that deploy completes.
+      # Multiple origins comma-separated: "https://your-app.netlify.app,https://custom.domain"
+      - key: SENTINEL_CORS_ORIGINS
+        value: "https://mplads-sentinel.netlify.app"

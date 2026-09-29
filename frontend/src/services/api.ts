@@ -11,6 +11,7 @@ import type {
   HealthResponse,
   ProjectInput,
   RiskAssessment,
+  RuleCatalogueResponse,
 } from "@/types/assessment";
 
 const BASE_URL =
@@ -107,6 +108,11 @@ export function assessProject(project: ProjectInput): Promise<RiskAssessment> {
     method: "POST",
     body: JSON.stringify(project),
   });
+}
+
+/** `GET /risk/rules` — the catalogue the engine evaluates, shown read-only. */
+export function fetchRules(): Promise<RuleCatalogueResponse> {
+  return request<RuleCatalogueResponse>("/risk/rules", { method: "GET" });
 }
 
 export const apiBaseUrl = BASE_URL;

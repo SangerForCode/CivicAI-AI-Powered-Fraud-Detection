@@ -1,4 +1,5 @@
-# Pinned to versions with Python 3.14 wheels.
+# These versions have wheels for both Python 3.12 (Render/production) and
+# Python 3.14 (local dev, installed with --only-binary=:all:).
 fastapi==0.141.1
 pydantic==2.13.5
 uvicorn[standard]==0.54.0

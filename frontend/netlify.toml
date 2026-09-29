@@ -1,0 +1,16 @@
+# Netlify configuration for the MPLADS Sentinel console (Next.js)
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  base    = "frontend"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Override in the Netlify dashboard → Site settings → Environment variables:
+  #   NEXT_PUBLIC_API_BASE_URL = https://<your-render-service>.onrender.com
+  NEXT_PUBLIC_API_BASE_URL = "https://mplads-sentinel-backend.onrender.com"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

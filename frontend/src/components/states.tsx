@@ -8,7 +8,7 @@ import { ApiError } from "@/services/api";
 export function EmptyState() {
   return (
     <Card className="flex min-h-[340px] flex-col items-center justify-center px-8 py-12 text-center">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-canvas">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface-sunken">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path
             d="M10 2.5l6.5 2.8v4.2c0 3.9-2.6 7.2-6.5 8-3.9-.8-6.5-4.1-6.5-8V5.3L10 2.5z"
@@ -91,7 +91,7 @@ export function ErrorState({ error, onRetry }: { error: ApiError; onRetry: () =>
             ) : null}
 
             {error.kind === "network" ? (
-              <p className="mt-3 rounded-md border border-line bg-canvas px-3 py-2 font-mono text-[11.5px] text-ink-muted">
+              <p className="mt-3 rounded-xl border border-line bg-surface-sunken px-3 py-2 font-mono text-[11.5px] text-ink-muted">
                 cd backend && .venv/bin/uvicorn app.main:app --reload --port 8000
               </p>
             ) : null}

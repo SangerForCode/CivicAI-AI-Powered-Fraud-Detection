@@ -43,12 +43,12 @@ function SignalRow({ signal }: { signal: RiskSignal }) {
   return (
     <li className="px-5 py-4">
       <div className="flex flex-wrap items-center gap-2">
-        <code className="rounded border border-line bg-canvas px-1.5 py-0.5 font-mono text-[12px] font-medium text-ink">
+        <code className="rounded-md border border-line bg-surface-sunken px-1.5 py-0.5 font-mono text-[12px] font-medium text-ink">
           {signal.rule_id}
         </code>
         <span
           className={cx(
-            "inline-flex items-center rounded border px-2 py-0.5 text-[11.5px] font-semibold uppercase tracking-wide",
+            "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11.5px] font-semibold uppercase tracking-wide",
             SEVERITY_CLASSES[signal.severity],
           )}
         >
@@ -75,7 +75,7 @@ function SignalRow({ signal }: { signal: RiskSignal }) {
       ) : null}
 
       {signal.evidence_fields.length > 0 ? (
-        <div className="mt-3 rounded-md border border-accent-600/20 bg-accent-50/60 px-3 py-2.5">
+        <div className="mt-3 rounded-2xl border border-accent-600/20 bg-accent-50/60 px-3 py-2.5">
           <p className="text-[11px] font-semibold uppercase tracking-wider text-accent-700">
             Evidence fields
           </p>
