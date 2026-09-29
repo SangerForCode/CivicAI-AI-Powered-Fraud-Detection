@@ -1,0 +1,338 @@
+MPLADS SENTINEL - SIH 2026 deck (OCR / full text extract)
+Source: https://docs.google.com/presentation/d/1K5brnbe9YBsSv0emqJscTdnimw9xfucfkBrP6FQYTg0/edit
+12 slides. Text is native slide text; image-heavy slides were OCR'd, so minor OCR errors possible. No speaker notes in the deck.
+
+========== SLIDE 1 ==========
+SMART INDIA HACKATHON 2026
+Problem Statement ID SIH26102  ·  Software
+MPLADS SENTINEL
+AI-Powered Risk, Anomaly & Compliance Intelligence for MPLADS
+Ministry of Statistics & Programme Implementation (MoSPI)
+TEAM
+Smaster(s)
+BITS Pilani, K. K. Birla Goa Campus
+TEAM LEADER
+Ayush Jayprakash Singh
+Ayush Sanger  ·  Hetasvi Patel  ·  Pranjal Chandi  ·  Ronak Dhawan  ·  Aarav Shah
+Institutional AI-assisted risk intelligence, built for authorised government review
+01 / 12
+
+========== SLIDE 2 ==========
+
+[IMAGE TEXT (OCR)]
+MPLADS SENTINEL | SIH26102 PROBLEM STATEMENT
+The Problem We're Solving | @ 222cic%..
+Billions for local development. But is the impact real? lipbact for. citizen:
+Fragmented & Delays & Lack of Transparency Risk of Limited
+Inconsistent Data Incomplete Projects Irregularities Citizen Involvement
+Data is scattered across Many sanctioned works Limited visibility into Possibility of inflated costs, Citizens lack easy tools
+multiple portals and formats, are delayed, incomplete how funds are used and duplicate works and to track progress or
+making monitoring difficult. or show little progress. what impact is created. misuse of funds. report issues.
+FROM FUNDS
+TO REAL IMPACT We're building a more accountable MPLADS.
+$1H26102 - MPLADS SENTINEL —_-—-- 03/12
+
+========== SLIDE 3 ==========
+
+[IMAGE TEXT (OCR)]
+THE PROBLEM
+Digital data exists.
+Intelligent oversight is missing.
+Risks stay hidden when delays, spending and documents are reviewed as isolated records.
+Recommendation Sanction Execution Expenditure Completion
+| Sentinel connects signals across the lifecycle to prioritise human review.
+SIH26102 - MPLADS SENTINEL 02/12
+
+========== SLIDE 4 ==========
+POSITIONING
+From digital visibility to intelligent detection
+EXISTING ECOSYSTEM
+eSAKSHI
+MoSPI's national MPLADS workflow and monitoring platform
+Data capture across the MPLADS lifecycle
+Recommendation & sanction workflow
+Fund release and utilisation tracking
+Status dashboards for stakeholders
+OUR CONTRIBUTION
+MPLADS Sentinel
+An AI-powered intelligence layer over the existing ecosystem
+Detection of anomalies and risk patterns
+Correlation across records, documents & entities
+Prioritisation of works for human review
+Explainable evidence for every risk flag
+OVER
+eSAKSHI is the system of record and workflow. MPLADS Sentinel is the system of intelligence — it complements eSAKSHI and does not replace it.
+SIH26102  ·  MPLADS SENTINEL
+Source: MoSPI / eSAKSHI, Government of India PIB
+03 / 12
+
+========== SLIDE 5 ==========
+OUR SOLUTION
+One intelligence layer. Multiple evidence signals.
+01
+Compliance
+Intelligence
+Explicit rule and policy checks against MPLADS guidance
+02
+Anomaly
+Detection
+Peer-group statistical and temporal deviation analysis
+03
+Document
+Intelligence
+Cross-checking figures across sanction and progress records
+04
+Relationship
+Intelligence
+Graph analysis of entities, works and fund flows
+05
+Geo / Evidence
+Intelligence
+Geospatial and photographic evidence as supporting signal
+MPLADS Sentinel continuously converts implementation data into actionable, explainable risk intelligence.
+SIH26102  ·  MPLADS SENTINEL
+04 / 12
+
+========== SLIDE 6 ==========
+
+[IMAGE TEXT (OCR)]
+MPLADS SENTINEL SIH26102 SYSTEM ARCHITECTURE (CONCEPT)
+Backend Architecture & Data Pipeline 9 "ss",
+From government data to actionable insights — a modular, Al-powered pipeline. oe eee aaa ames
+8G Data Sources 6 Ingestion & Storage Al Analysis Layer Risk Scoring & Aggregation Outputs & Users
+Multi-source government data Collect, clean and store data Specialised, role-based Al agents ‘Combine insights into actionable risks Insights for different stakeholders.
+(analyzing different aspects)
+g e-SAKSHI = Data ingesti Cost Estimation Al
+B PLS porta gestion Layer: Bi rete pricssrocorass
+Menai pee costuang hora! data eee mae ite
+PFMS ee RX ; location and project type : Dash
+zg (Payments data) = (Scheduled pipelines) ‘Model: Open Source / API (replaceable) Bory Risk Scoring Engine
+Python FastAPD Noell Deena + Weighted risk seering igi seep
+yz Gem = 8 Finds unusual patterns inc * Rule-based checks elton eating wt ions
+2 (Procurement dats) 1 \erecdors Genetrws and payeenks © minocaloutoute
+APis, teas mace lminicete + Explainable reasoning
+Downloads, Data Cleaning & maar (why flagged)
+© Giaci. —] WebScreping: Standardlaetion. Document Analysis Al Ses
+Se ut fins) ue terach oe veric ration ) PrvenFasary wn Public Portal
+——=) * Deduplication from sanctions, bills and completion =>
+@ Open Government Data _/ + Entity resolution certificates (OCR + NLP). | © View works and status
+DE Geo, census, maps) python Pandas) * FO*Mat standardisation Molt: Replaceable + Report issues / anomalies
+yn (Pandas) © Track resolution
+Geospatial Al
+ni State/ULB Portals — 4 eG Validates project location using Flagged Works
+(Project details, tenders) satelite imagery and GIS data, cos igh /iniechurn /1LOW rek
+= Modet: Replaceable © Reason codes
+Satelite & Geospatial norage Nabveett Analy + Evidence links 2 Reports & Analytics
+(imagery, land use) e Detects connections between + Sento government officer
+officials (graph analysis) ‘* CAG / MoSPI integration
+2@e Citizen Reports Zy PostgreSQL $3/ Mini Post's Model: Replaceable * Policy insights
+amd (User submissions) oa hee staal a mena
+© 4014 / Replace Al Modules as needed
+Data Ingestion AI/ML (Replaceable) Backend & APIs Frontend Maps & Geospatial Moni
+Technology Stack thicative) @ m@ © ne) 8 ~ o ©
+Omer Sek OM B O & @- 9 @
+(Pion Apache PostgaSOL S3/MinO Posts Openal Anthropic Meta Mistral Hugging! FostAPl Docker Kubernetes NextjsTalwind Google Maps API GIS Grafona Prometheus
+Am) alow ums) oss
+¢ oH ) OUR GOAL | A transparent, scalable and modular system that turns diverse government data into actionable insights for a cleaner MPLADS. _—— 09/12
+
+========== SLIDE 7 ==========
+EXPLAINABILITY
+Every alert answers three questions: What? Why? What next?
+ILLUSTRATIVE PROTOTYPE OUTPUT
+WORK ID
+MPL-XXXXX
+82
+RISK SCORE
+HIGH
+RECOMMENDED ACTION
+Priority Verification
+Routed for authorised official review — not an automated finding of fraud.
+SIGNAL BREAKDOWN
+Sanction Delay
++24
+Progress Anomaly
++21
+Cost Deviation
++17
+Document Inconsistency
++11
+Relationship Pattern
++9
+WHY FLAGGED?
+Sanctioned expenditure was released without a corresponding progress update within the applicable window, and reported cost diverges from comparable works in the same district and category.
+WHAT NEXT?
+The case is queued for authorised official review, with supporting evidence attached, prior to any verification or inspection decision.
+SIH26102  ·  MPLADS SENTINEL
+06 / 12
+
+========== SLIDE 8 ==========
+
+[IMAGE TEXT (OCR)]
+MPLADS SENTINEL | SIH26102 GOVERNMENT OFFICER DASHBOARD (CONCEPT)
+Government Officer Dashboard (228285.
+ae x 5 % ided by id :
+A unified view to detect risks, understand why, and take action. ae
+‘A.Sharma
+DE Q y ee 6 Di son er OY
+G ofl
+Sa Total Works = @ High Risk Works @ Under Review Completed
+Focus on 12,420 = 184 631 9,217 Quick overview
+what matters 1 12% from last mont 4 5% from last month ‘+ 8% from last 1 14% from last mon Key numbers and
+Alhighlights trends at a glance
+high-risk works Risk Map (India) Risk Distribution Top Risk Categories View All»
+across India Kes
+. High Risk 4
+Medium Risk °
+@ Low Risk 2B —
+. Ri 24 —
+s 16 Prioritised action
+Gecepatal 2 See top risk
+insights 8 categories and
+See risk distribution
+across districts
+most critical works
+and states All
+WorkID Tie Diswict Category Sanctioned Amount ‘Rok Score status Action UY
+3] MP0; 2 High View
+MPL-8831 inking Wate 87 High View Accountability
+Evidence at MPL-2291 3 a High View Track status,
+your fingertips MPL-4472 Community Hall Cuttack Community Asset %8,00,000 76 tern Medium View assign actions
+View documents, MPL7812 street Lighting si Publictightng #200000 GR section cety ac View andigenerate reports
+flags and detailed
+explanations
+easier eels ar evidence and full transparency. O17
+
+========== SLIDE 9 ==========
+
+[IMAGE TEXT (OCR)]
+EXTERNAL PROOF OF CONCEPT MPLADS SENTINEL | SIH26102
+Case Study: 2 ee
+Brazil — ALICE
+191,000 203
+Al for real-world government fraud detection
+government acquisitions audits triggered
+analysed in 2023 (contracts worth ~€4.15 billion)
+Brazil’s Comptroller General’s Office (CGU) developed Alice, an
+Al-powered system that monitors government procurement. one
+€1.5 billion 400 > 8 days
+Alice continuously analyses bids, contracts and public notices to value of bids suspended / average audit time reduced
+identify potential risks and irregularities for government officials. cancelled due to Alice's alerts from 400 days to 8 days
+(2019 - 2022) (2019 - 2022)
+It follows the same philosophy as Sentinel: Source: OECD
+G t Proven real-world impact
+ovetnmery Al analysis Risk detection 020 Human investigation .
+data = > > COd Alice is not a research prototype.
+aa : Detects risks and Flags suspicious Government auditors It is an operational system that has
+ids, contracts, * ee ;
+athletes irregularities cases review and take action led to significant recoveries, faster
+audits and better oversight.
+MPLADS Sentinel applies the same proven approach to the MPLADS context — combining data, Al and
+human oversight to surface high-risk works and enable faster, more effective verification.
+Pea ae aN Od |
+SIH26102 - MPLADS SENTINEL ed 08 / 12
+
+========== SLIDE 10 ==========
+
+[IMAGE TEXT (OCR)]
+MPLADS SENTINEL |
+References & Sources
+S1H26102
+REFERENCES & SOURCES
+Key sources informing our problem understanding, solution design and global best practices.
+EP https:/Awww.mospi,goviit
+MPLADS Scheme
+Ministry of Statistics & Programme
+Implementation (MoSPI)
+MPLADS Guidelines
+Operational structure, objectives,
+permissible works and fund flow
+Data fields and reporting requirements
+lads
+Ministry of Statistics & Programme Implementation (MoSPI) - MPLADS.
+//www.oecd.or
+GP
+Brazil - ALICE (International Example)
+Developed by the Comptroller General's Office (CGU)
+Al-powered system to monitor government procurement
+In 2023, analysed ~191,000 acquisitions and triggered
+203 audits (~€4.15 billion)
+Between 2019-2022, contributed to suspension/
+cancellation of bids worth ~€155 billion and
+reduced average audit time from ~400 days to 8 days
+uublications/governing-with-artificial-intelligence.htmi
+OECD - Governing with Artificial Intelligence (Case Study: Alice, Brazil)
+Academic & Research References
+=
+S1IH26102 - MPLADS SENTINEL
+* OECD -Al in the Public Sector (use cases, governance and ethics)
+* Research on anomaly detection in public finance and procurement
++ Graph-based fraud and network analysis in government systems
+6 e-SAKSHI
+National MPLADS workflow and monitoring platform
+Data capture across recommendation, sanction,
+execution and completion
+Official dashboards and reporting for stakeholders
+Data structure and integration possibilities
+e-SAKSHI - MoSPI (MPLADS online management system)
+04 CAG Reports (Historical Context)
+2
+area Sen afte
+‘reise wt mereten chara
+CAG
+GP _ bitpsi//eas.gouin
+Performance audits of MPLADS implementation
+Findings on implementation delays, utilisation
+certificate gaps and inconsistent expenditure reporting
+Insights into common risk areas and vulnerabilities
+(case-specific, historical)
+Comptroller and Auditor General of India (CAG) - Performance Audit Reports on MPLADS
+* Document Al for compliance monitoring
+* Risk scoring and explainable Al in high-stakes domains
+* Global case studies on Al for fraud detection in public administration
+OP Mitosilwwon.cecd ora/en/topics/
+artificial-intelligence.htm|
+OECD - Alin the Public Sector
+12/12
+
+========== SLIDE 11 ==========
+
+[IMAGE TEXT (OCR)]
+MPLADS SENTINEL SIH26102 USER PORTAL (PUBLIC VIEW)
+A More Transparent MPLADS ee le
+i re accountable ven
+For Citizens, By Citizens CN | ene | ree:
+Create Change.
+Explore works in your area, track progress, and report issues.
+# MPLADS Sentinel Home Explore Works MapView —=«Reportanissue About.
+MPLADS Works
+in Your Area
+erect rua Rie aunt)
+Se ere tac
+Village Road Construction
+scting Better Communities
+Category
+700% 2%, Open for Al e
+Districts View. Voi Report
+Location
+D Nanded, Maharashtra 8
+Recent Works Near You View All > Gy Seetoned Amount a < Completion
+£20,00,000
+Work i Title Location Amount (®) status View
+f MPementna Aaeney © 1
+MPL-S561 Vilage Road Construction Nanded, MH 20/00,000 In Progress View Zia Parishad, Nanded In Progress, Upload Photo (Optional)
+4p, Cacktoupoad
+MPL-4482 Community Water Tank Udi, Rd 12.00,000 Completed View progress Timeline a reed pr
+MPL-7710 Govt. Schoo! Bulding Patna, BR 25,00,000 In Progress (view | Qo Qe oO
+MPL-3290 Steet Lighting cutack, 00 800.000 Completed View sanctioned seed blister
+Jun 2028
+S1H26102 - MPLADS SENTINEL
+1/12
+
+========== SLIDE 12 ==========
+FROM VISIBILITY TO VIGILANCE.
+AI-assisted, explainable and human-supervised monitoring for MPLADS.
+SIH26102  ·  Ministry of Statistics & Programme Implementation
+Team Smaster(s)
+BITS Pilani, K. K. Birla Goa Campus
+SIH26102  ·  MPLADS SENTINEL
+12 / 12

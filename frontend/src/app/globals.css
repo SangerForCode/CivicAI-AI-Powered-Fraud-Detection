@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* MPLADS Sentinel — light institutional theme.
+   One brand colour, one accent, neutral greys. No gradients, no dark mode:
+   this is a review console meant to read the same on every screen. */
+
+@theme {
+  --color-brand-50: #eef3f9;
+  --color-brand-100: #d8e3f0;
+  --color-brand-600: #2c5183;
+  --color-brand-700: #1e3a5f;
+  --color-brand-900: #142744;
+
+  --color-accent-50: #fbf4ea;
+  --color-accent-600: #c6873b;
+  --color-accent-700: #9c6a2c;
+
+  --color-canvas: #f8fafc;
+  --color-surface: #ffffff;
+  --color-line: #e2e8f0;
+  --color-line-strong: #cbd5e1;
+  --color-ink: #0f172a;
+  --color-ink-muted: #64748b;
+  --color-ink-subtle: #94a3b8;
+
+  /* Risk levels: muted, legible, never alarmist. */
+  --color-risk-low: #15803d;
+  --color-risk-low-bg: #f0fdf4;
+  --color-risk-low-line: #bbf7d0;
+  --color-risk-medium: #b45309;
+  --color-risk-medium-bg: #fffbeb;
+  --color-risk-medium-line: #fde68a;
+  --color-risk-high: #c2410c;
+  --color-risk-high-bg: #fff7ed;
+  --color-risk-high-line: #fed7aa;
+  --color-risk-critical: #b91c1c;
+  --color-risk-critical-bg: #fef2f2;
+  --color-risk-critical-line: #fecaca;
+  --color-risk-unknown: #475569;
+  --color-risk-unknown-bg: #f8fafc;
+  --color-risk-unknown-line: #e2e8f0;
+
+  --radius-card: 10px;
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-raised: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Numbers that sit in columns should not jitter as they change. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
