@@ -222,7 +222,7 @@ export function ProjectForm({
                         onFormChange(exampleToForm(example));
                         setExampleMenuOpen(false);
                       }}
-                      className="block w-full border-b border-line px-4 py-2.5 text-left last:border-b-0 hover:bg-surface-sunken"
+                      className="block w-full border-b border-line px-4 py-2.5 text-left last:border-b-0 hover:bg-sunken"
                     >
                       <span className="block text-[13px] font-medium text-ink">{example.name}</span>
                       <span className="mt-0.5 block text-[12px] leading-snug text-ink-muted">
@@ -435,7 +435,7 @@ export function ProjectForm({
           </Fieldset>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line bg-surface-sunken/60 px-5 py-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line bg-sunken/60 px-5 py-4">
           <p className="text-[12px] text-ink-subtle">
             Blank fields are submitted as unknown, not as zero.
           </p>

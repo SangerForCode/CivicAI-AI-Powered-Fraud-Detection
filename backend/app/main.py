@@ -13,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.engine import constants as C
 from app.engine.scoring import assess, rule_catalogue
+from app.portal.router import router as portal_router
 from app.schemas import (
     HealthResponse,
     ProjectInput,
@@ -44,6 +45,9 @@ app.add_middleware(
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],
 )
+
+
+app.include_router(portal_router)
 
 
 @app.get("/health", response_model=HealthResponse, tags=["system"])

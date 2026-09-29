@@ -105,7 +105,7 @@ export function DocumentChecklist({
               {extras.map((name) => (
                 <span
                   key={name}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface-sunken px-2.5 py-0.5 text-[12px] text-ink"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-sunken px-2.5 py-0.5 text-[12px] text-ink"
                 >
                   {name}
                   <button
@@ -162,7 +162,7 @@ function ModeButton({
         "rounded-full border px-3 py-1 text-[12px] font-medium transition-colors",
         active
           ? "border-brand-700 bg-brand-50 text-brand-700"
-          : "border-line-strong bg-surface text-ink-muted hover:bg-surface-sunken",
+          : "border-line-strong bg-surface text-ink-muted hover:bg-sunken",
       )}
     >
       {children}

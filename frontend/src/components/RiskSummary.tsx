@@ -3,7 +3,7 @@
 /** Headline figures for an assessment: score, level, status, completeness. */
 
 import { AlertIcon, ChartIcon, GaugeIcon, ShieldIcon } from "@/components/icons";
-import { Badge, StatCard, cx } from "@/components/ui";
+import { Badge, Stat, cx } from "@/components/ui";
 import {
   RISK_LEVEL_CLASSES,
   RISK_LEVEL_LABELS,
@@ -32,7 +32,7 @@ export function RiskSummary({ assessment }: { assessment: RiskAssessment }) {
   return (
     <div className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard
+        <Stat
           label="Risk Score"
           icon={<GaugeIcon className="h-[18px] w-[18px]" />}
           iconTone={tile}
@@ -47,7 +47,7 @@ export function RiskSummary({ assessment }: { assessment: RiskAssessment }) {
           caption={risk_score === null ? "Not scored — no dimension assessable." : "Engine-computed"}
         />
 
-        <StatCard
+        <Stat
           label="Risk Level"
           icon={<AlertIcon className="h-[18px] w-[18px]" />}
           iconTone={tile}
@@ -64,7 +64,7 @@ export function RiskSummary({ assessment }: { assessment: RiskAssessment }) {
           caption="Band derived from the overall score"
         />
 
-        <StatCard
+        <Stat
           label="Assessment Status"
           icon={<ShieldIcon className="h-[18px] w-[18px]" />}
           iconTone={
@@ -87,7 +87,7 @@ export function RiskSummary({ assessment }: { assessment: RiskAssessment }) {
           caption={incomplete ? "Some dimensions could not be assessed" : "All dimensions assessed"}
         />
 
-        <StatCard
+        <Stat
           label="Completeness"
           icon={<ChartIcon className="h-[18px] w-[18px]" />}
           value={
@@ -98,7 +98,7 @@ export function RiskSummary({ assessment }: { assessment: RiskAssessment }) {
           caption="of dimension weight assessed"
         >
           <div
-            className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-sunken"
+            className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-sunken"
             role="img"
             aria-label={`${completenessPercent}% of dimension weight was assessable`}
           >
@@ -107,7 +107,7 @@ export function RiskSummary({ assessment }: { assessment: RiskAssessment }) {
               style={{ width: `${completenessPercent}%` }}
             />
           </div>
-        </StatCard>
+        </Stat>
       </div>
 
       {incomplete ? (

@@ -1,4 +1,4 @@
-/** Small shared presentational pieces used across the console. */
+/** Shared presentational primitives. Information containers, not decoration. */
 
 import type { ReactNode } from "react";
 
@@ -9,14 +9,19 @@ export function cx(...parts: (string | false | null | undefined)[]): string {
 export function Card({
   children,
   className,
+  interactive,
 }: {
   children: ReactNode;
   className?: string;
+  /** Adds the hover lift used by cards that navigate somewhere. */
+  interactive?: boolean;
 }) {
   return (
     <section
       className={cx(
         "rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)]",
+        interactive &&
+          "transition-shadow duration-200 hover:border-line-strong hover:shadow-[var(--shadow-raised)]",
         className,
       )}
     >
@@ -29,23 +34,52 @@ export function CardHeader({
   title,
   subtitle,
   action,
+  className,
 }: {
-  title: string;
-  subtitle?: string;
+  title: ReactNode;
+  subtitle?: ReactNode;
   action?: ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-4.5">
-      <div>
-        <h2 className="text-[15px] font-semibold tracking-tight text-ink">{title}</h2>
-        {subtitle ? <p className="mt-0.5 text-[13px] text-ink-muted">{subtitle}</p> : null}
+    <div
+      className={cx(
+        "flex flex-wrap items-start justify-between gap-3 border-b border-line px-5 py-4",
+        className,
+      )}
+    >
+      <div className="min-w-0">
+        <h2 className="text-[14.5px] font-semibold tracking-tight text-ink">{title}</h2>
+        {subtitle ? <p className="mt-0.5 text-[12.5px] text-ink-muted">{subtitle}</p> : null}
       </div>
       {action}
     </div>
   );
 }
 
-/** A small pill. `tone` carries the semantic colouring classes. */
+/** Section heading used where a full card would be too much furniture. */
+export function SectionTitle({
+  title,
+  subtitle,
+  action,
+  className,
+}: {
+  title: ReactNode;
+  subtitle?: ReactNode;
+  action?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cx("mb-3 flex flex-wrap items-end justify-between gap-3", className)}>
+      <div>
+        <h2 className="text-[16px] font-semibold tracking-tight text-ink">{title}</h2>
+        {subtitle ? <p className="mt-0.5 text-[12.5px] text-ink-muted">{subtitle}</p> : null}
+      </div>
+      {action}
+    </div>
+  );
+}
+
 export function Badge({
   children,
   tone,
@@ -58,8 +92,8 @@ export function Badge({
   return (
     <span
       className={cx(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[12px] font-medium",
-        tone ?? "border-line bg-surface-sunken text-ink-muted",
+        "inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11.5px] font-medium",
+        tone ?? "border-line bg-sunken text-ink-muted",
         className,
       )}
     >
@@ -69,12 +103,12 @@ export function Badge({
 }
 
 /**
- * A field name quoted as evidence. Rendered monospace so a reviewer can match
- * it against the form input that produced the signal.
+ * A field name quoted as evidence, rendered monospace so a reviewer can match
+ * it against the record that produced the signal.
  */
 export function FieldChip({ children }: { children: ReactNode }) {
   return (
-    <code className="inline-flex items-center rounded-md border border-accent-600/25 bg-accent-50 px-1.5 py-0.5 font-mono text-[11.5px] text-accent-700">
+    <code className="inline-flex items-center rounded-[var(--radius-field)] border border-brand-100 bg-brand-50 px-1.5 py-0.5 font-mono text-[11px] text-brand-700">
       {children}
     </code>
   );
@@ -83,25 +117,31 @@ export function FieldChip({ children }: { children: ReactNode }) {
 export function Button({
   children,
   variant = "primary",
+  size = "md",
   className,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "danger";
+  size?: "sm" | "md";
 }) {
   const variants = {
-    primary:
-      "bg-brand-700 text-white shadow-[0_6px_16px_-10px_rgba(8,38,28,0.9)] hover:bg-brand-600 disabled:bg-brand-700/40 disabled:cursor-not-allowed",
-    secondary:
-      "border border-line-strong bg-surface text-ink hover:bg-surface-sunken disabled:opacity-50 disabled:cursor-not-allowed",
-    ghost: "text-ink-muted hover:text-ink hover:bg-surface-sunken",
+    primary: "bg-brand-700 text-white hover:bg-brand-500 disabled:bg-brand-700/40",
+    secondary: "border border-line-strong bg-surface text-ink hover:bg-sunken",
+    ghost: "text-ink-muted hover:bg-sunken hover:text-ink",
+    danger: "border border-risk-critical-line bg-risk-critical-bg text-risk-critical hover:bg-risk-critical-bg/70",
+  } as const;
+  const sizes = {
+    sm: "px-2.5 py-1.5 text-[12px]",
+    md: "px-3.5 py-2 text-[13px]",
   } as const;
 
   return (
     <button
       className={cx(
-        "inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-[13px] font-medium transition-colors",
+        "inline-flex items-center justify-center gap-1.5 rounded-[var(--radius-field)] font-medium transition-colors duration-150 disabled:cursor-not-allowed",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600",
         variants[variant],
+        sizes[size],
         className,
       )}
       {...props}
@@ -130,61 +170,84 @@ export function Spinner({ className }: { className?: string }) {
   );
 }
 
-/**
- * The soft outer container the console's main column sits in — the large
- * curvature that defines the layout.
- */
-export function Panel({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <div
-      className={cx(
-        "rounded-[var(--radius-panel)] border border-line bg-surface shadow-[var(--shadow-panel)]",
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
-}
-
-/** A headline figure with an icon tile, as used in the summary strip. */
-export function StatCard({
+/** A labelled figure. Used across both dashboards. */
+export function Stat({
   label,
   value,
   caption,
   icon,
   iconTone,
+  trend,
+  className,
   children,
 }: {
   label: string;
   value: ReactNode;
   caption?: ReactNode;
-  icon: ReactNode;
-  /** Border + tint + text classes for the icon tile. */
+  icon?: ReactNode;
   iconTone?: string;
+  trend?: ReactNode;
+  className?: string;
+  /** Extra content below the caption, e.g. a progress bar. */
   children?: ReactNode;
 }) {
   return (
-    <div className="rounded-[var(--radius-card)] border border-line bg-surface p-5 shadow-[var(--shadow-card)]">
+    <div
+      className={cx(
+        "rounded-[var(--radius-card)] border border-line bg-surface p-4 shadow-[var(--shadow-card)] sm:p-5",
+        className,
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-ink-subtle">
+          <p className="text-[11.5px] font-medium uppercase tracking-wide text-ink-muted">
             {label}
           </p>
           <div className="mt-1.5">{value}</div>
         </div>
-        <span
-          className={cx(
-            "flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border",
-            iconTone ?? "border-brand-100 bg-brand-50 text-brand-700",
-          )}
-          aria-hidden="true"
-        >
-          {icon}
-        </span>
+        {icon ? (
+          <span
+            className={cx(
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-field)] border",
+              iconTone ?? "border-brand-100 bg-brand-50 text-brand-700",
+            )}
+            aria-hidden="true"
+          >
+            {icon}
+          </span>
+        ) : null}
       </div>
-      {caption ? <div className="mt-2 text-[11.5px] text-ink-subtle">{caption}</div> : null}
+      {trend ?? null}
+      {caption ? <p className="mt-1.5 text-[11.5px] text-ink-subtle">{caption}</p> : null}
       {children}
     </div>
+  );
+}
+
+/** Two-column definition row, used on detail pages. */
+export function DetailRow({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 border-b border-line py-2.5 last:border-b-0">
+      <dt className="text-[12.5px] text-ink-muted">{label}</dt>
+      <dd className="text-right text-[13px] font-medium text-ink">{children}</dd>
+    </div>
+  );
+}
+
+export function Skeleton({ className }: { className?: string }) {
+  return <div className={cx("animate-pulse rounded bg-sunken", className)} aria-hidden="true" />;
+}
+
+/** The disclaimer, rendered verbatim. Never paraphrased in the client. */
+export function Disclaimer({ text, className }: { text: string; className?: string }) {
+  return (
+    <p
+      className={cx(
+        "rounded-[var(--radius-card)] border border-line bg-sunken px-4 py-3 text-[11.5px] leading-relaxed text-ink-muted",
+        className,
+      )}
+    >
+      {text}
+    </p>
   );
 }

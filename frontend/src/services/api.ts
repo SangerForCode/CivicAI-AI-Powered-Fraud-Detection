@@ -13,6 +13,18 @@ import type {
   RiskAssessment,
   RuleCatalogueResponse,
 } from "@/types/assessment";
+import type {
+  AssistedAnalysis,
+  CitizenReport,
+  CitizenReportCreate,
+  CitizenStats,
+  DashboardSummary,
+  FilterOptions,
+  WorkDetail,
+  WorkPage,
+  WorkQuery,
+  WorkSummary,
+} from "@/types/portal";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, "") ?? "http://localhost:8000";
@@ -113,6 +125,74 @@ export function assessProject(project: ProjectInput): Promise<RiskAssessment> {
 /** `GET /risk/rules` — the catalogue the engine evaluates, shown read-only. */
 export function fetchRules(): Promise<RuleCatalogueResponse> {
   return request<RuleCatalogueResponse>("/risk/rules", { method: "GET" });
+}
+
+/** Drops undefined/empty entries so a blank filter never narrows the query. */
+function queryString(params: Record<string, string | number | undefined>): string {
+  const search = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (value === undefined || value === "") continue;
+    search.set(key, String(value));
+  }
+  const encoded = search.toString();
+  return encoded ? `?${encoded}` : "";
+}
+
+// --- portal ---------------------------------------------------------------
+
+/** `GET /works` — the shared list behind the citizen explorer and officer table. */
+export function fetchWorks(query: WorkQuery = {}): Promise<WorkPage> {
+  return request<WorkPage>(`/works${queryString({ ...query })}`, { method: "GET" });
+}
+
+/** `GET /works/map` — marker set, highest risk first. */
+export function fetchMapWorks(
+  query: Pick<WorkQuery, "state" | "category" | "risk_level"> & { limit?: number } = {},
+): Promise<WorkSummary[]> {
+  return request<WorkSummary[]>(`/works/map${queryString({ ...query })}`, { method: "GET" });
+}
+
+export function fetchWork(workId: string): Promise<WorkDetail> {
+  return request<WorkDetail>(`/works/${encodeURIComponent(workId)}`, { method: "GET" });
+}
+
+export function fetchAnalysis(workId: string): Promise<AssistedAnalysis> {
+  return request<AssistedAnalysis>(`/works/${encodeURIComponent(workId)}/analysis`, {
+    method: "GET",
+  });
+}
+
+export function fetchWorkReports(workId: string): Promise<CitizenReport[]> {
+  return request<CitizenReport[]>(`/works/${encodeURIComponent(workId)}/reports`, {
+    method: "GET",
+  });
+}
+
+/** `POST /works/{id}/reports` — a citizen observation, routed for human review. */
+export function submitReport(
+  workId: string,
+  payload: CitizenReportCreate,
+): Promise<CitizenReport> {
+  return request<CitizenReport>(`/works/${encodeURIComponent(workId)}/reports`, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function fetchRecentReports(limit = 8): Promise<CitizenReport[]> {
+  return request<CitizenReport[]>(`/reports/recent${queryString({ limit })}`, { method: "GET" });
+}
+
+export function fetchDashboard(): Promise<DashboardSummary> {
+  return request<DashboardSummary>("/dashboard/summary", { method: "GET" });
+}
+
+export function fetchCitizenStats(): Promise<CitizenStats> {
+  return request<CitizenStats>("/citizen/stats", { method: "GET" });
+}
+
+export function fetchFilterOptions(): Promise<FilterOptions> {
+  return request<FilterOptions>("/filters", { method: "GET" });
 }
 
 export const apiBaseUrl = BASE_URL;

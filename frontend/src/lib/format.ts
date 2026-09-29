@@ -7,6 +7,7 @@
  */
 
 import type { DimensionKey, ProjectStage, RiskLevel, Severity } from "@/types/assessment";
+import type { IssueType, MilestoneStatus, ReviewStatus } from "@/types/portal";
 
 /** Turns a snake_case schema field into something readable in the UI. */
 export function humaniseField(field: string): string {
@@ -88,5 +89,53 @@ export function formatWeight(weight: number): string {
 }
 
 export function formatScore(score: number | null): string {
+  return score === null ? "—" : String(Math.round(score));
+}
+
+
+// --- portal labels --------------------------------------------------------
+
+export const REVIEW_STATUS_CLASSES: Record<ReviewStatus, string> = {
+  open: "border-line bg-sunken text-ink-muted",
+  under_review: "border-risk-medium-line bg-risk-medium-bg text-risk-medium",
+  completed: "border-risk-low-line bg-risk-low-bg text-risk-low",
+  flagged: "border-risk-high-line bg-risk-high-bg text-risk-high",
+};
+
+export const ISSUE_TYPE_LABELS: Record<IssueType, string> = {
+  work_not_started: "Work does not appear to have started",
+  work_stalled: "Work appears to have stopped",
+  quality_concern: "Concern about quality of work",
+  incomplete_work: "Recorded as done but appears incomplete",
+  not_as_described: "Work on site differs from the description",
+  other: "Other observation",
+};
+
+export const MILESTONE_CLASSES: Record<MilestoneStatus, { dot: string; text: string }> = {
+  done: { dot: "bg-accent-500 border-accent-500", text: "text-ink" },
+  current: { dot: "bg-brand-700 border-brand-700 ring-4 ring-brand-100", text: "text-ink" },
+  upcoming: { dot: "bg-surface border-line-strong", text: "text-ink-subtle" },
+};
+
+/** Dot colour for a risk level, for map markers and legends. */
+export const RISK_DOT: Record<RiskLevel, string> = {
+  low: "var(--color-risk-low)",
+  medium: "var(--color-risk-medium)",
+  high: "var(--color-risk-high)",
+  critical: "var(--color-risk-critical)",
+};
+
+export const UNKNOWN_DOT = "var(--color-risk-unknown)";
+
+/** Compact Indian-style count, e.g. 1420 -> "1,420". Display only. */
+export function formatCount(value: number): string {
+  return value.toLocaleString("en-IN");
+}
+
+/**
+ * Risk score rendered for a pill. Null means the record could not be assessed,
+ * which is shown as a dash rather than a zero.
+ */
+export function riskPillText(score: number | null): string {
   return score === null ? "—" : String(Math.round(score));
 }

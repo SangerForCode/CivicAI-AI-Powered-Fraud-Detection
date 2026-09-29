@@ -35,14 +35,14 @@ function DimensionRow({ dimension }: { dimension: DimensionResult }) {
   const unavailable = !dimension.available;
 
   return (
-    <div className={cx("px-5 py-4", unavailable && "bg-surface-sunken/60")}>
+    <div className={cx("px-5 py-4", unavailable && "bg-sunken/60")}>
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-[14px] font-semibold text-ink">{dimension.label}</h3>
             <Badge>Weight {formatWeight(dimension.weight)}</Badge>
             {unavailable ? (
-              <Badge tone="border-line-strong bg-surface-sunken text-ink-muted">Unavailable</Badge>
+              <Badge tone="border-line-strong bg-sunken text-ink-muted">Unavailable</Badge>
             ) : (
               <Badge tone="border-risk-low-line bg-risk-low-bg text-risk-low">Available</Badge>
             )}
@@ -77,7 +77,7 @@ function DimensionRow({ dimension }: { dimension: DimensionResult }) {
           {dimension.triggered_rules.map((ruleId) => (
             <code
               key={ruleId}
-              className="rounded-md border border-line bg-surface-sunken px-1.5 py-0.5 font-mono text-[11.5px] text-ink"
+              className="rounded-md border border-line bg-sunken px-1.5 py-0.5 font-mono text-[11.5px] text-ink"
             >
               {ruleId}
             </code>

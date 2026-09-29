@@ -1,58 +1,64 @@
 @import "tailwindcss";
 
-/* MPLADS Sentinel — light institutional theme.
-   Deep-green government chrome, soft canvas, generous curvature. One brand
-   colour, one accent, neutral greys. No dark mode: this is a review console
-   meant to read the same on every screen. */
+/* MPLADS Sentinel design tokens.
+   Deep government green, warm neutrals, white cards, restrained borders.
+   Risk colour is reserved for risk: it never carries ordinary UI meaning. */
 
 @theme {
-  --color-brand-50: #eaf4ef;
-  --color-brand-100: #cfe6db;
-  --color-brand-400: #3f7f66;
-  --color-brand-600: #1c5f47;
-  --color-brand-700: #124534;
-  --color-brand-800: #0d3527;
-  --color-brand-900: #08261c;
+  /* Brand */
+  --color-brand-50: #eef5f2;
+  --color-brand-100: #d6e7e0;
+  --color-brand-200: #b0d0c5;
+  --color-brand-400: #3f8a76;
+  --color-brand-500: #12705b;
+  --color-brand-600: #075c4b;
+  --color-brand-700: #075c4b;
+  --color-brand-800: #063f35;
+  --color-brand-900: #04302a;
 
-  --color-accent-50: #fdf4e7;
-  --color-accent-100: #f8e3c2;
-  --color-accent-600: #c6873b;
-  --color-accent-700: #9c6a2c;
+  /* Accent — success, active, progress */
+  --color-accent-50: #eaf6f1;
+  --color-accent-100: #cbe9dd;
+  --color-accent-500: #1b8a6b;
+  --color-accent-600: #16745a;
 
-  --color-canvas: #eef2f7;
+  /* Neutrals */
+  --color-canvas: #f7f9f8;
   --color-surface: #ffffff;
-  --color-surface-sunken: #f6f8fb;
-  --color-line: #e5eaf1;
-  --color-line-strong: #cbd5e1;
-  --color-ink: #0f172a;
-  --color-ink-muted: #64748b;
-  --color-ink-subtle: #94a3b8;
+  --color-sunken: #f1f5f3;
+  --color-line: #e2e8e5;
+  --color-line-strong: #cbd6d1;
+  --color-ink: #17211e;
+  --color-ink-muted: #66736e;
+  --color-ink-subtle: #93a099;
 
-  /* Risk levels: muted, legible, never alarmist. */
-  --color-risk-low: #15803d;
-  --color-risk-low-bg: #f0fdf4;
-  --color-risk-low-line: #bbf7d0;
-  --color-risk-medium: #b45309;
-  --color-risk-medium-bg: #fffbeb;
-  --color-risk-medium-line: #fde68a;
-  --color-risk-high: #c2410c;
-  --color-risk-high-bg: #fff7ed;
-  --color-risk-high-line: #fed7aa;
-  --color-risk-critical: #b91c1c;
-  --color-risk-critical-bg: #fef2f2;
-  --color-risk-critical-line: #fecaca;
-  --color-risk-unknown: #475569;
-  --color-risk-unknown-bg: #f8fafc;
-  --color-risk-unknown-line: #e9eef5;
+  /* Risk — muted, never neon. Used only for risk communication. */
+  --color-risk-low: #2e8b68;
+  --color-risk-low-bg: #eef7f2;
+  --color-risk-low-line: #c3e3d4;
+  --color-risk-medium: #d59a27;
+  --color-risk-medium-bg: #fdf7e9;
+  --color-risk-medium-line: #f3e0b4;
+  --color-risk-high: #d66a3d;
+  --color-risk-high-bg: #fdf1eb;
+  --color-risk-high-line: #f5d2be;
+  --color-risk-critical: #c94b4b;
+  --color-risk-critical-bg: #fceded;
+  --color-risk-critical-line: #f2c9c9;
+  --color-risk-unknown: #66736e;
+  --color-risk-unknown-bg: #f1f5f3;
+  --color-risk-unknown-line: #e2e8e5;
 
-  /* Curvature scale. The console is soft-edged throughout. */
-  --radius-card: 20px;
-  --radius-panel: 28px;
-  --radius-field: 12px;
+  /* Radii: 8-12px. Information containers, not floating decoration. */
+  --radius-sm: 8px;
+  --radius-card: 12px;
+  --radius-field: 8px;
 
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -16px rgba(15, 23, 42, 0.18);
-  --shadow-raised: 0 4px 12px rgba(15, 23, 42, 0.08);
-  --shadow-panel: 0 24px 60px -32px rgba(8, 38, 28, 0.35);
+  --shadow-card: 0 1px 2px rgba(23, 33, 30, 0.04);
+  --shadow-raised: 0 4px 16px -6px rgba(23, 33, 30, 0.14);
+  --shadow-panel: 0 12px 32px -18px rgba(6, 63, 53, 0.4);
+
+  --ease-ui: cubic-bezier(0.32, 0.72, 0.35, 1);
 }
 
 html {
@@ -67,22 +73,50 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Numbers that sit in columns should not jitter as they change. */
+/* Numbers in columns should not jitter as they change. */
 .tabular {
   font-variant-numeric: tabular-nums;
 }
 
-/* Scoped scrollbar styling for the sidebar and long result columns. */
 .thin-scroll::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 .thin-scroll::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.3);
+  background: rgba(102, 115, 110, 0.28);
   border-radius: 999px;
 }
 .thin-scroll::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* Entry motion. Short and used sparingly — 150-250ms, never decorative. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-rise {
+  animation: rise 220ms var(--ease-ui) both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade {
+  animation: fade 180ms var(--ease-ui) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -90,6 +124,7 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

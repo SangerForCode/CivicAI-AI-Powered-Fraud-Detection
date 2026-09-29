@@ -43,7 +43,7 @@ function SignalRow({ signal }: { signal: RiskSignal }) {
   return (
     <li className="px-5 py-4">
       <div className="flex flex-wrap items-center gap-2">
-        <code className="rounded-md border border-line bg-surface-sunken px-1.5 py-0.5 font-mono text-[12px] font-medium text-ink">
+        <code className="rounded-md border border-line bg-sunken px-1.5 py-0.5 font-mono text-[12px] font-medium text-ink">
           {signal.rule_id}
         </code>
         <span

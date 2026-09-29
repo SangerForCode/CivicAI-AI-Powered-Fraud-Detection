@@ -10,9 +10,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "MPLADS Sentinel — Risk Engine Console",
+  title: {
+    default: "MPLADS Sentinel — People. Projects. Progress.",
+    template: "%s · MPLADS Sentinel",
+  },
   description:
-    "Testing console for the MPLADS Sentinel risk-scoring engine. Prototype decision-support scoring for authorised review.",
+    "Explore MPLADS development works, track their progress and report what you see. Rule-based risk signals routed for authorised human review.",
 };
 
 export default function RootLayout({

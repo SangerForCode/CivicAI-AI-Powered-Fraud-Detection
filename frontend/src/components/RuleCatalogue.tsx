@@ -103,7 +103,7 @@ export function RuleCatalogue() {
     <div className="space-y-4">
       <p className="max-w-3xl text-[13px] leading-relaxed text-ink-muted">
         Every check the engine can run, straight from{" "}
-        <code className="rounded bg-surface-sunken px-1 py-0.5 font-mono text-[12px]">
+        <code className="rounded bg-sunken px-1 py-0.5 font-mono text-[12px]">
           GET /risk/rules
         </code>
         . A rule is evaluated only when all the fields it requires are present — otherwise its
