@@ -139,3 +139,27 @@ export function formatCount(value: number): string {
 export function riskPillText(score: number | null): string {
   return score === null ? "—" : String(Math.round(score));
 }
+
+/**
+ * How a citizen report's state is worded.
+ *
+ * A report is an observation awaiting checking, and the label has to keep
+ * saying so. Nothing here ever asserts that something was found to be true.
+ */
+export const REPORT_STATUS_LABELS: Record<string, string> = {
+  received: "Verification Pending",
+  acknowledged: "Under Review",
+};
+
+export function reportStatusLabel(status: string): string {
+  return REPORT_STATUS_LABELS[status] ?? "Report Received";
+}
+
+export const REPORT_STATUS_CLASSES: Record<string, string> = {
+  received: "border-line bg-sunken text-ink-muted",
+  acknowledged: "border-risk-medium-line bg-risk-medium-bg text-risk-medium",
+};
+
+export function reportStatusTone(status: string): string {
+  return REPORT_STATUS_CLASSES[status] ?? "border-line bg-sunken text-ink-muted";
+}

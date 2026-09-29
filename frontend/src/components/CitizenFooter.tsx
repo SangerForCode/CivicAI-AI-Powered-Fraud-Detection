@@ -7,6 +7,7 @@ import { Wordmark } from "@/components/Brand";
 const LINKS = [
   { href: "/explore", label: "Explore Works" },
   { href: "/map", label: "Map View" },
+  { href: "/overview", label: "How It Works" },
   { href: "/about", label: "About" },
   { href: "/officer", label: "Officer Portal" },
 ];

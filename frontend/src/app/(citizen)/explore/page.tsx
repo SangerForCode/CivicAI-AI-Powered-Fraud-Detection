@@ -9,6 +9,7 @@ import { EMPTY_FILTERS, FilterBar, type FilterValues } from "@/components/Filter
 import { MegaphoneIcon } from "@/components/icons";
 import { ToolbarSearch } from "@/components/OfficerShell";
 import { WorkCard } from "@/components/WorkCard";
+import { WorkPreviewOnHover } from "@/components/WorkPreview";
 import { EmptyState, ErrorState } from "@/components/states";
 import { Button, Card, SectionTitle, Skeleton } from "@/components/ui";
 import { formatCount } from "@/lib/format";
@@ -127,7 +128,14 @@ function ExploreInner() {
         <>
           <div className="animate-rise grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {works.state.data.works.map((work) => (
-              <WorkCard key={work.work_id} work={work} showRisk={false} />
+              <WorkPreviewOnHover
+                key={work.work_id}
+                work={work}
+                href={`/works/${work.work_id}`}
+                className="h-full"
+              >
+                <WorkCard work={work} showRisk={false} />
+              </WorkPreviewOnHover>
             ))}
           </div>
 

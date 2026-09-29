@@ -6,9 +6,10 @@ import Link from "next/link";
 import { use, useState } from "react";
 
 import { HeroArt } from "@/components/HeroArt";
+import { ReportEntry } from "@/components/ReportEntry";
 import { ReportForm } from "@/components/ReportForm";
 import { Timeline } from "@/components/Timeline";
-import { ArrowRightIcon, MapPinIcon, MegaphoneIcon } from "@/components/icons";
+import { ArrowRightIcon, MapPinIcon } from "@/components/icons";
 import { ErrorState, LoadingState } from "@/components/states";
 import { Badge, Card, CardHeader, DetailRow, Disclaimer, SectionTitle } from "@/components/ui";
 import { useAsync } from "@/lib/useAsync";
@@ -188,22 +189,15 @@ export default function CitizenWorkPage({ params }: { params: Promise<{ id: stri
               />
               <ul className="divide-y divide-line">
                 {detail.reports.slice(0, 4).map((report) => (
-                  <li key={report.report_id} className="px-5 py-3.5">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <Badge tone="border-brand-100 bg-brand-50 text-brand-700">
-                        <MegaphoneIcon className="h-3 w-3" />
-                        {report.issue_label}
-                      </Badge>
-                      <span className="text-[11.5px] text-ink-subtle">
-                        {report.submitted_on_formatted}
-                      </span>
-                    </div>
-                    <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-muted">
-                      {report.description}
-                    </p>
+                  <li key={report.report_id} className="px-5 py-4">
+                    <ReportEntry report={report} showProject={false} />
                   </li>
                 ))}
               </ul>
+              <p className="border-t border-line px-5 py-3 text-[11px] leading-relaxed text-ink-subtle">
+                These are observations members of the public have submitted. They have not been
+                verified, and they do not change this work&apos;s risk score.
+              </p>
             </Card>
           ) : null}
         </div>

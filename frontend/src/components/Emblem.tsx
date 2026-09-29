@@ -30,7 +30,10 @@ export function Emblem({
       src="/emblem-of-india.svg"
       alt={title ?? ""}
       aria-hidden={title ? undefined : true}
-      className={cx("h-full w-auto select-none object-contain", tone === "light" && "invert", className)}
+      // No height here: the caller sets it. A base `h-full` competes with the
+      // caller's `h-9` as two utilities of the same kind, and which one wins is
+      // decided by stylesheet order rather than by the prop.
+      className={cx("w-auto select-none object-contain", tone === "light" && "invert", className)}
       draggable={false}
     />
   );

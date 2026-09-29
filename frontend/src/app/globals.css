@@ -119,6 +119,19 @@ body {
   animation: fade 180ms var(--ease-ui) both;
 }
 
+/* The connector lines on the walkthrough page, and nowhere else. A slow dash
+   drift reads as "data moves along here" without anything blinking or glowing. */
+@keyframes flow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.animate-flow {
+  stroke-dasharray: 3 4;
+  animation: flow 2.4s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

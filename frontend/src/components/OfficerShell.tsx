@@ -141,7 +141,10 @@ export function OfficerShell({
 
       <div className="flex min-w-0 flex-1 flex-col lg:pl-[232px]">
         <header className="sticky top-0 z-30 border-b border-line bg-surface/95 px-4 py-3 backdrop-blur lg:px-6">
-          <div className="flex flex-wrap items-center gap-3">
+          {/* One row, never wrapping: the title column absorbs the slack and
+              truncates, so the action cluster on the right keeps its position
+              and cannot ride over the rail's emblem at any viewport width. */}
+          <div className="flex min-w-0 flex-nowrap items-center gap-3">
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
@@ -153,7 +156,7 @@ export function OfficerShell({
               </svg>
             </button>
 
-            <div className="min-w-0 flex-1">
+            <div className="min-w-0 flex-1 overflow-hidden">
               <h1 className="truncate text-[17px] font-semibold tracking-tight text-ink">{title}</h1>
               {subtitle ? (
                 <p className="truncate text-[12.5px] text-ink-muted">{subtitle}</p>

@@ -17,14 +17,10 @@ export function Wordmark({
 }) {
   const content = (
     <span className={cx("flex items-center gap-2.5", className)}>
-      <span
-        className={cx(
-          "flex h-10 w-8 shrink-0 items-center justify-center rounded-[var(--radius-field)] px-0.5",
-          tone === "dark" ? "bg-brand-50" : "bg-white/10",
-        )}
-      >
-        <Emblem className="h-8" tone={tone} />
-      </span>
+      {/* No plate behind the emblem. A tinted square around the State Emblem
+          reads as a logo lockup it is not entitled to; the glyph sits on the
+          surface, inverted to white only where the surface is dark green. */}
+      <Emblem className="h-9 shrink-0" tone={tone} />
       <span className="min-w-0 leading-tight">
         <span
           className={cx(
@@ -47,7 +43,10 @@ export function Wordmark({
   );
 
   return href ? (
-    <Link href={href} className="rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">
+    <Link
+      href={href}
+      className="inline-flex min-w-0 rounded-[var(--radius-field)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+    >
       {content}
     </Link>
   ) : (

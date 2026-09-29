@@ -2,14 +2,13 @@
 
 /** Citizen map: works placed on India, filterable, with a compact detail card. */
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { IndiaMap, MapLegend } from "@/components/IndiaMap";
-import { RiskPill } from "@/components/RiskPill";
+import { WorkPreviewCard } from "@/components/WorkPreview";
 import { MapPinIcon } from "@/components/icons";
 import { ErrorState } from "@/components/states";
-import { Badge, Button, Card, CardHeader, SectionTitle, Skeleton } from "@/components/ui";
+import { Card, CardHeader, SectionTitle, Skeleton } from "@/components/ui";
 import { formatCount } from "@/lib/format";
 import { useAsync } from "@/lib/useAsync";
 import { fetchFilterOptions, fetchMapWorks } from "@/services/api";
@@ -127,62 +126,12 @@ export default function CitizenMapPage() {
 
         <div className="space-y-4">
           {selected ? (
-            <Card className="animate-rise p-4">
-              <div className="flex items-start justify-between gap-3">
-                <span className="tabular font-mono text-[11.5px] text-ink-subtle">
-                  {selected.work_id}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setSelected(null)}
-                  aria-label="Close work details"
-                  className="text-ink-subtle transition-colors duration-150 hover:text-ink"
-                >
-                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </div>
-
-              <h3 className="mt-1 text-[14.5px] font-semibold leading-snug text-ink">
-                {selected.title}
-              </h3>
-              <p className="mt-1 flex items-center gap-1 text-[12px] text-ink-muted">
-                <MapPinIcon className="h-3.5 w-3.5 text-ink-subtle" />
-                {selected.block}, {selected.district} · {selected.state}
-              </p>
-
-              <dl className="mt-4 space-y-3">
-                <div>
-                  <dt className="text-[11px] uppercase tracking-wide text-ink-muted">Risk score</dt>
-                  <dd className="mt-1">
-                    <RiskPill score={selected.risk_score} level={selected.risk_level} />
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] uppercase tracking-wide text-ink-muted">Completion</dt>
-                  <dd className="tabular mt-1 text-[14px] font-semibold text-ink">
-                    {selected.completion_percentage === null
-                      ? "Not reported"
-                      : `${Math.round(selected.completion_percentage)}%`}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] uppercase tracking-wide text-ink-muted">Sanctioned</dt>
-                  <dd className="tabular mt-1 text-[14px] font-semibold text-ink">
-                    {selected.sanctioned.formatted}
-                  </dd>
-                </div>
-              </dl>
-
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                <Badge>{selected.category_label}</Badge>
-                <Badge>{selected.stage_label}</Badge>
-              </div>
-
-              <Link href={`/works/${selected.work_id}`} className="mt-4 block">
-                <Button className="w-full">View Project</Button>
-              </Link>
+            <Card className="animate-rise overflow-hidden">
+              <WorkPreviewCard
+                work={selected}
+                href={`/works/${selected.work_id}`}
+                onClose={() => setSelected(null)}
+              />
             </Card>
           ) : (
             <Card className="p-5 text-center">

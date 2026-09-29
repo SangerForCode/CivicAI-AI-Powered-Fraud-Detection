@@ -2,15 +2,15 @@
 
 /** Analytical risk map: markers, state shading and a filterable side list. */
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { IndiaMap, MapLegend } from "@/components/IndiaMap";
 import { OfficerShell } from "@/components/OfficerShell";
 import { RiskPill } from "@/components/RiskPill";
+import { WorkPreviewCard } from "@/components/WorkPreview";
 import { MapPinIcon } from "@/components/icons";
 import { ErrorState } from "@/components/states";
-import { Badge, Button, Card, CardHeader, Skeleton, cx } from "@/components/ui";
+import { Card, CardHeader, Skeleton, cx } from "@/components/ui";
 import { formatCount } from "@/lib/format";
 import { useAsync } from "@/lib/useAsync";
 import { fetchFilterOptions, fetchMapWorks } from "@/services/api";
@@ -54,7 +54,10 @@ export default function OfficerMapPage() {
     const max = Math.max(...Object.values(counts), 1);
     const shaded: Record<string, string> = {};
     for (const [name, count] of Object.entries(counts)) {
-      const intensity = Math.round((0.18 + (count / max) * 0.5) * 100);
+      // Kept faint on purpose. The shading is a density hint behind the
+      // markers; at full strength it washes the whole country orange and
+      // reads as a verdict on every state rather than a count.
+      const intensity = Math.round((0.05 + (count / max) * 0.16) * 100);
       shaded[name] = `color-mix(in srgb, var(--color-risk-high) ${intensity}%, var(--color-brand-50))`;
     }
     return shaded;
@@ -151,44 +154,24 @@ export default function OfficerMapPage() {
 
         <div className="space-y-4">
           {selected ? (
-            <Card className="animate-rise p-4">
-              <span className="tabular font-mono text-[11.5px] text-ink-subtle">
-                {selected.work_id}
-              </span>
-              <h3 className="mt-1 text-[14px] font-semibold leading-snug text-ink">
-                {selected.title}
-              </h3>
-              <p className="mt-1 flex items-center gap-1 text-[12px] text-ink-muted">
-                <MapPinIcon className="h-3.5 w-3.5 text-ink-subtle" />
-                {selected.district}, {selected.state}
-              </p>
-
-              <div className="mt-3 flex items-center justify-between">
-                <RiskPill score={selected.risk_score} level={selected.risk_level} />
-                <span className="tabular text-[12.5px] text-ink-muted">
-                  {selected.completion_percentage === null
-                    ? "No progress reported"
-                    : `${Math.round(selected.completion_percentage)}% complete`}
-                </span>
-              </div>
-
-              {selected.key_flags.length > 0 ? (
-                <ul className="mt-3 flex flex-wrap gap-1.5">
-                  {selected.key_flags.slice(0, 3).map((flag) => (
-                    <li key={flag}>
-                      <Badge tone="border-risk-high-line bg-risk-high-bg text-risk-high">
-                        {flag}
-                      </Badge>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-
-              <Link href={`/officer/works/${selected.work_id}`} className="mt-4 block">
-                <Button className="w-full">Open investigation</Button>
-              </Link>
+            <Card className="animate-rise overflow-hidden">
+              <WorkPreviewCard
+                work={selected}
+                href={`/officer/works/${selected.work_id}`}
+                onClose={() => setSelected(null)}
+              />
             </Card>
-          ) : null}
+          ) : (
+            <Card className="p-5 text-center">
+              <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-line bg-sunken text-ink-subtle">
+                <MapPinIcon className="h-5 w-5" />
+              </span>
+              <p className="mt-2.5 text-[13px] font-medium text-ink">Select a marker</p>
+              <p className="mt-1 text-[12px] leading-relaxed text-ink-muted">
+                Pick a point on the map, or a row below, to preview that work before opening it.
+              </p>
+            </Card>
+          )}
 
           <Card className="overflow-hidden">
             <CardHeader title="Flagged works in view" subtitle="High and critical only." />

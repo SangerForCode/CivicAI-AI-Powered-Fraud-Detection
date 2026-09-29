@@ -15,11 +15,12 @@ import { DataQuality } from "@/components/DataQuality";
 import { IndiaMap } from "@/components/IndiaMap";
 import { OfficerShell } from "@/components/OfficerShell";
 import { RiskBar, RiskPill } from "@/components/RiskPill";
+import { ReportEntry } from "@/components/ReportEntry";
 import { RiskSignals } from "@/components/RiskSignals";
 import { Timeline } from "@/components/Timeline";
-import { CameraIcon, MapPinIcon, MegaphoneIcon } from "@/components/icons";
+import { MapPinIcon, MegaphoneIcon } from "@/components/icons";
 import { ErrorState, LoadingState } from "@/components/states";
-import { Badge, Button, Card, CardHeader, DetailRow, Disclaimer } from "@/components/ui";
+import { Badge, Button, Card, CardHeader, DetailRow, Disclaimer, Reveal } from "@/components/ui";
 import { DIMENSION_DESCRIPTIONS, REVIEW_STATUS_CLASSES, formatWeight } from "@/lib/format";
 import { useAsync } from "@/lib/useAsync";
 import { fetchAnalysis, fetchWork } from "@/services/api";
@@ -70,6 +71,7 @@ export default function InvestigationPage({ params }: { params: Promise<{ id: st
     >
       <div className="space-y-5">
         {/* Header: score and standing */}
+        <Reveal step={0}>
         <Card className="p-5">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="min-w-0">
@@ -120,10 +122,12 @@ export default function InvestigationPage({ params }: { params: Promise<{ id: st
             </p>
           ) : null}
         </Card>
+        </Reveal>
 
         <div className="grid gap-5 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           {/* Left column — the case */}
           <div className="space-y-5">
+            <Reveal step={1}>
             <Card>
               <CardHeader
                 title="Risk breakdown"
@@ -147,15 +151,21 @@ export default function InvestigationPage({ params }: { params: Promise<{ id: st
                 ))}
               </div>
             </Card>
+            </Reveal>
 
-            <RiskSignals signals={assessment.signals} />
+            <Reveal step={2}>
+              <RiskSignals signals={assessment.signals} />
+            </Reveal>
 
-            <AnalysisPanel
-              analysis={analysis.state.kind === "ready" ? analysis.state.data : null}
-              loading={analysis.state.kind === "loading"}
-            />
+            <Reveal step={3}>
+              <AnalysisPanel
+                analysis={analysis.state.kind === "ready" ? analysis.state.data : null}
+                loading={analysis.state.kind === "loading"}
+              />
+            </Reveal>
 
             {detail.reports.length > 0 ? (
+              <Reveal step={4}>
               <Card>
                 <CardHeader
                   title="Citizen reports"
@@ -164,31 +174,7 @@ export default function InvestigationPage({ params }: { params: Promise<{ id: st
                 <ul className="divide-y divide-line">
                   {detail.reports.map((report) => (
                     <li key={report.report_id} className="px-5 py-4">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="tabular font-mono text-[11.5px] text-ink-subtle">
-                          {report.report_id}
-                        </span>
-                        <Badge tone="border-brand-100 bg-brand-50 text-brand-700">
-                          {report.issue_label}
-                        </Badge>
-                        {report.has_photo ? (
-                          <Badge>
-                            <CameraIcon className="h-3 w-3" />
-                            Photo offered
-                          </Badge>
-                        ) : null}
-                        <span className="ml-auto text-[11.5px] text-ink-subtle">
-                          {report.submitted_on_formatted}
-                        </span>
-                      </div>
-                      <p className="mt-2 text-[12.5px] leading-relaxed text-ink">
-                        {report.description}
-                      </p>
-                      {report.reporter_area ? (
-                        <p className="mt-1.5 text-[11px] text-ink-subtle">
-                          Reported by: {report.reporter_area}
-                        </p>
-                      ) : null}
+                      <ReportEntry report={report} showProject={false} />
                     </li>
                   ))}
                 </ul>
@@ -197,13 +183,17 @@ export default function InvestigationPage({ params }: { params: Promise<{ id: st
                   score and are shown here for the reviewer&apos;s judgement.
                 </p>
               </Card>
+              </Reveal>
             ) : null}
 
-            <DataQuality assessment={assessment} />
+            <Reveal step={5}>
+              <DataQuality assessment={assessment} />
+            </Reveal>
           </div>
 
           {/* Right column — the record */}
           <div className="space-y-5">
+            <Reveal step={1}>
             <Card>
               <CardHeader title="Project information" />
               <div className="px-5 py-2">
@@ -250,14 +240,18 @@ export default function InvestigationPage({ params }: { params: Promise<{ id: st
                 </dl>
               </div>
             </Card>
+            </Reveal>
 
+            <Reveal step={2}>
             <Card>
               <CardHeader title="Timeline" />
               <div className="p-5">
                 <Timeline milestones={detail.milestones} />
               </div>
             </Card>
+            </Reveal>
 
+            <Reveal step={3}>
             <Card>
               <CardHeader
                 title="Evidence / documents"
@@ -296,7 +290,9 @@ export default function InvestigationPage({ params }: { params: Promise<{ id: st
                 </ul>
               )}
             </Card>
+            </Reveal>
 
+            <Reveal step={4}>
             <Card>
               <CardHeader title="Map location" subtitle={`${summary.district}, ${summary.state}`} />
               <div className="bg-sunken/40 p-4">
@@ -306,6 +302,7 @@ export default function InvestigationPage({ params }: { params: Promise<{ id: st
                 Approximate location within the district. Not the surveyed work site.
               </p>
             </Card>
+            </Reveal>
 
             <Disclaimer text={assessment.disclaimer} />
           </div>

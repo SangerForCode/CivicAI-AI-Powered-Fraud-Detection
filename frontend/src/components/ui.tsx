@@ -251,3 +251,27 @@ export function Disclaimer({ text, className }: { text: string; className?: stri
     </p>
   );
 }
+
+/**
+ * Staggered entry for the major sections of a page.
+ *
+ * One wrapper per section, not per element: the page settles top to bottom in
+ * the order a reviewer reads it, and stops moving well inside a third of a
+ * second. `prefers-reduced-motion` collapses the whole thing in globals.css.
+ */
+export function Reveal({
+  step = 0,
+  className,
+  children,
+}: {
+  /** Position in the reading order; each step adds 60ms. */
+  step?: number;
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className={cx("animate-rise", className)} style={{ animationDelay: `${step * 60}ms` }}>
+      {children}
+    </div>
+  );
+}

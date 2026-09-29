@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 import { EMPTY_FILTERS, FilterBar, type FilterValues } from "@/components/Filters";
 import { OfficerShell, ToolbarSearch } from "@/components/OfficerShell";
 import { RiskPill } from "@/components/RiskPill";
+import { WorkPreviewOnHover } from "@/components/WorkPreview";
 import { MegaphoneIcon } from "@/components/icons";
 import { EmptyState, ErrorState, TableSkeleton } from "@/components/states";
 import { Badge, Button, Card, cx } from "@/components/ui";
@@ -172,12 +173,17 @@ export default function OfficerWorksPage() {
                           ) : null}
                         </td>
                         <td className="max-w-[18rem] px-4 py-3">
-                          <span className="block truncate text-[12.5px] font-medium text-ink">
-                            {work.title}
-                          </span>
-                          <span className="block truncate text-[11px] text-ink-subtle">
-                            {work.block}, {work.state}
-                          </span>
+                          <WorkPreviewOnHover
+                            work={work}
+                            href={`/officer/works/${work.work_id}`}
+                          >
+                            <span className="block truncate text-[12.5px] font-medium text-ink">
+                              {work.title}
+                            </span>
+                            <span className="block truncate text-[11px] text-ink-subtle">
+                              {work.block}, {work.state}
+                            </span>
+                          </WorkPreviewOnHover>
                         </td>
                         <td className="whitespace-nowrap px-4 py-3 text-[12.5px] text-ink-muted">
                           {work.district}

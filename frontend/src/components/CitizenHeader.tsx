@@ -15,6 +15,7 @@ const NAV = [
   { href: "/explore", label: "Explore Works" },
   { href: "/map", label: "Map View" },
   { href: "/explore?report=1", label: "Report an Issue" },
+  { href: "/overview", label: "How It Works" },
   { href: "/about", label: "About" },
 ];
 

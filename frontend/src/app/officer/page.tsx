@@ -55,7 +55,8 @@ export default function OfficerDashboard() {
     const max = Math.max(...data.state_rollup.map((bucket) => bucket.count), 1);
     const tints: Record<string, string> = {};
     for (const bucket of data.state_rollup) {
-      const intensity = 0.18 + (bucket.count / max) * 0.5;
+      // Faint: a density hint behind the markers, not a verdict on the state.
+      const intensity = 0.05 + (bucket.count / max) * 0.16;
       tints[bucket.key] = `color-mix(in srgb, var(--color-risk-high) ${Math.round(
         intensity * 100,
       )}%, var(--color-brand-50))`;
