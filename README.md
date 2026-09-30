@@ -1,8 +1,37 @@
 # MPLADS Sentinel
 
-**People. Projects. Progress.**
+<div align="center">
 
-SIH 2026 · Problem Statement **SIH26102** · Team Smaster(s), BITS Pilani K. K. Birla Goa Campus
+<h2>People. Projects. Progress.</h2>
+
+<p><strong>Explainable risk intelligence for publicly funded development works.</strong></p>
+
+<p>
+  <a href="https://mplads-sentinel-sigma.vercel.app/">Live citizen portal</a> ·
+  <a href="https://mplads-sentinel-sigma.vercel.app/officer">Officer dashboard</a> ·
+  <a href="https://mplads-sentinel-backend.onrender.com/docs">API documentation</a>
+</p>
+
+<p><img alt="BITS Pilani SIH 2026 Internal Hackathon Winner" src="https://img.shields.io/badge/BITS%20Pilani-SIH%202026%20Internal%20Hackathon%20Winner-D4A017?style=for-the-badge"></p>
+
+<p><strong>🏆 Winner — BITS Pilani Internal Hackathon for SIH 2026</strong><br>
+Problem Statement <strong>SIH26102</strong> · Team Smasters · BITS Pilani, K. K. Birla Goa Campus</p>
+
+</div>
+
+<p align="center">
+  <a href="https://mplads-sentinel-sigma.vercel.app/"><img src="docs/previews/citizen-portal-live.png" alt="Live MPLADS Sentinel citizen portal preview" width="100%"></a>
+</p>
+<p align="center"><sub>Live prototype preview · all displayed works and locations are synthetic demonstration data.</sub></p>
+
+### SIH concept boards
+
+<p align="center">
+  <img src="docs/previews/civicai-citizen-concept.jpg" alt="CivicAI citizen portal concept board" width="49%">
+  <img src="docs/previews/civicai-officer-concept.jpg" alt="CivicAI officer analytics concept board" width="49%">
+</p>
+
+<p align="center"><sub>SIH concept visuals with illustrative screens and sample data, not the current deployed UI. “AI-powered fraud detection” is concept-art wording only: the running engine is deterministic, and risk flags are review signals—not findings of fraud.</sub></p>
 
 A transparency platform for works funded under the Members of Parliament Local Area
 Development Scheme. It does two things and joins them together: it runs a rule-based
@@ -27,9 +56,28 @@ actually there.
 | Shows | Works near you, their progress, their documents | A prioritised review queue with evidence |
 | Does | Lets you report what you see on the ground | Lets you investigate one work end to end |
 
+<p align="center">
+  <img src="docs/previews/officer-dashboard-live.png" alt="Live MPLADS Sentinel officer dashboard with KPI cards and India risk map" width="100%">
+</p>
+<p align="center"><sub>Live officer dashboard preview · KPI deltas are illustrative; all work records are synthetic demo data.</sub></p>
+
+### System flow
+
+```mermaid
+flowchart LR
+    Citizen[Citizen] -->|Browse works / submit observation| CitizenPortal[Citizen portal · Next.js]
+    Officer[Officer reviewer] -->|Review queue / inspect evidence| OfficerPortal[Officer portal · Next.js]
+    CitizenPortal -->|JSON requests| API[FastAPI portal API]
+    OfficerPortal -->|JSON requests| API
+    API --> Catalogue[Seeded synthetic works catalogue]
+    API --> Reports[In-memory citizen reports]
+    API --> Engine[Deterministic scoring engine · 17 rules · 4 dimensions]
+    Engine --> Assessment[Explainable score · risk band · rule signals · missing-data status]
+    Assessment --> CitizenPortal
+    Assessment --> OfficerPortal
 ```
-Citizen observation → evidence → rule analysis → officer review
-```
+
+The backend is the scoring source of truth. The frontend renders its assessments and does not recalculate scores. Citizen reports are routed for human review and do not change a work's risk score.
 
 ### Routes
 
@@ -82,7 +130,7 @@ python3 -m venv .venv
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
@@ -175,13 +223,18 @@ restricted under the State Emblem of India (Prohibition of Improper Use) Act, 20
 appropriate for a government platform, but check the position before using this mark
 outside a hackathon submission.
 
-## Deployment
+## Live demo and deployment
 
-`render.yaml` (backend) and `frontend/netlify.toml` (frontend) are committed. Connect the
-repo on Render as a Blueprint and on Netlify as a site, then set:
+The current public demo is deployed as a **Vercel frontend + Render API**:
 
-- Netlify → `NEXT_PUBLIC_API_BASE_URL` = the Render service URL
-- Render → `SENTINEL_CORS_ORIGINS` = the Netlify site URL
+| Service | URL |
+|---|---|
+| Citizen portal | <https://mplads-sentinel-sigma.vercel.app/> |
+| Officer dashboard | <https://mplads-sentinel-sigma.vercel.app/officer> |
+| Backend health | <https://mplads-sentinel-backend.onrender.com/health> |
+| Interactive API docs | <https://mplads-sentinel-backend.onrender.com/docs> |
+
+`render.yaml` defines the Render backend. The checked-in `frontend/netlify.toml` is an alternative Netlify frontend configuration; the deployed frontend linked above is on Vercel. For another deployment, set `NEXT_PUBLIC_API_BASE_URL` to the backend origin and configure the backend's `SENTINEL_CORS_ORIGINS` to the exact frontend origin.
 
 ## Scope
 
@@ -191,3 +244,10 @@ maps, the document register and the assisted-analysis layer.
 Deliberately excluded: authentication, a real database, OCR, file uploads, LLM features,
 peer-group statistics and graph analysis. Citizen reports live in memory and reset when
 the service restarts.
+
+## Team credits
+
+| Area | Contributors |
+|---|---|
+| Backend | Ayush Sanger · Ayush Jayprakash Singh |
+| Frontend | Ayush Sanger · Ronak Dhawan |
