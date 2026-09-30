@@ -17,16 +17,6 @@
 <p><strong>🏆 Winner — BITS Pilani Internal Hackathon for SIH 2026</strong><br>
 Problem Statement <strong>SIH26102</strong> · Team Smasters · BITS Pilani, K. K. Birla Goa Campus</p>
 
-<table align="center">
-  <thead><tr><th>Backend</th><th>Frontend</th></tr></thead>
-  <tbody>
-    <tr>
-      <td>Ayush Sanger<br>Ayush Jayprakash Singh</td>
-      <td>Ayush Sanger<br>Ronak Dhawan</td>
-    </tr>
-  </tbody>
-</table>
-
 </div>
 
 <p align="center">
@@ -263,3 +253,10 @@ maps, the document register and the assisted-analysis layer.
 Deliberately excluded: authentication, a real database, OCR, file uploads, LLM features,
 peer-group statistics and graph analysis. Citizen reports live in memory and reset when
 the service restarts.
+
+## Team credits
+
+| Area | Contributors |
+|---|---|
+| Backend | Ayush Jayprakash Singh · Ayush Sanger |
+| Frontend | Ronak Dhawan · Ayush Sanger |
