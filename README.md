@@ -17,6 +17,16 @@
 <p><strong>🏆 Winner — BITS Pilani Internal Hackathon for SIH 2026</strong><br>
 Problem Statement <strong>SIH26102</strong> · Team Smasters · BITS Pilani, K. K. Birla Goa Campus</p>
 
+<table align="center">
+  <thead><tr><th>Backend</th><th>Frontend</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Ayush Sanger<br>Ayush Jayprakash Singh</td>
+      <td>Ayush Sanger<br>Ronak Dhawan</td>
+    </tr>
+  </tbody>
+</table>
+
 </div>
 
 <p align="center">
@@ -26,12 +36,21 @@ Problem Statement <strong>SIH26102</strong> · Team Smasters · BITS Pilani, K. 
 
 ### SIH concept boards
 
+<h4>Citizen portal concept</h4>
 <p align="center">
-  <img src="docs/previews/civicai-citizen-concept.jpg" alt="CivicAI citizen portal concept board" width="49%">
-  <img src="docs/previews/civicai-officer-concept.jpg" alt="CivicAI officer analytics concept board" width="49%">
+  <img src="docs/previews/civicai-citizen-concept.jpg" alt="CivicAI citizen portal concept board" width="100%">
 </p>
+<p align="center"><sub>Landing page, works map, and sample work details · concept artwork, not the live interface.</sub></p>
 
-<p align="center"><sub>SIH concept visuals with illustrative screens and sample data, not the current deployed UI. “AI-powered fraud detection” is concept-art wording only: the running engine is deterministic, and risk flags are review signals—not findings of fraud.</sub></p>
+<br>
+
+<h4>Officer analytics concept</h4>
+<p align="center">
+  <img src="docs/previews/civicai-officer-concept.jpg" alt="CivicAI officer analytics concept board" width="100%">
+</p>
+<p align="center"><sub>Dashboard, risk distribution, and review queue · concept artwork with illustrative sample data.</sub></p>
+
+> The concept art's “AI-powered fraud detection” wording is not an implementation claim. The running engine is deterministic, and risk flags are review signals—not findings of fraud.
 
 A transparency platform for works funded under the Members of Parliament Local Area
 Development Scheme. It does two things and joins them together: it runs a rule-based
@@ -244,10 +263,3 @@ maps, the document register and the assisted-analysis layer.
 Deliberately excluded: authentication, a real database, OCR, file uploads, LLM features,
 peer-group statistics and graph analysis. Citizen reports live in memory and reset when
 the service restarts.
-
-## Team credits
-
-| Area | Contributors |
-|---|---|
-| Backend | Ayush Sanger · Ayush Jayprakash Singh |
-| Frontend | Ayush Sanger · Ronak Dhawan |
